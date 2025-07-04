@@ -66,6 +66,10 @@ body {
     color: #e0e0e0; /* 밝은 회색 */
 }
 
+.navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* 내비게이션 바 그림자 */
+}
+
 .nav-link {
     font-weight: bold;
     position: relative;
@@ -96,6 +100,64 @@ main {
     padding: 0;
 }
 
+/* --- Video Carousel Replacement Styles --- */
+#video-carousel-replacement {
+    position: relative;
+    width: 100%;
+    height: 400px; /* 캐러셀과 동일한 높이 */
+    overflow: hidden;
+    background-color: #000; /* 영상 로드 전/후 배경 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+#video-carousel-replacement iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100vw; /* 뷰포트 너비에 맞춤 */
+    height: 56.25vw; /* 16:9 비율 유지 (9/16 = 0.5625) */
+    transform: translate(-50%, -50%);
+    z-index: 0; /* 콘텐츠 뒤로 */
+}
+
+#video-carousel-replacement .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 영상 위에 어두운 오버레이 */
+    z-index: 1;
+}
+
+#video-carousel-replacement .video-content {
+    position: absolute; /* 절대 위치 지정 */
+    bottom: 20px; /* 하단에서 20px 위로 */
+    left: 50%;
+    transform: translateX(-50%); /* 중앙 정렬 */
+    z-index: 2; /* 오버레이 위에 콘텐츠 */
+    width: 80%; /* 텍스트가 너무 길어지지 않도록 너비 제한 */
+}
+
+
+#video-carousel-replacement h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+#video-carousel-replacement p {
+    font-size: 1.5rem;
+}
+
+/* --- End Video Carousel Replacement Styles --- */
+
 .carousel-item img {
     height: 400px; /* 캐러셀 이미지 높이 */
     object-fit: cover; /* 이미지가 잘리지 않고 전체가 보이도록 함 */
@@ -107,6 +169,7 @@ main {
     border-radius: 5px;
     color: #e0e0e0; /* 밝은 회색 글씨 */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* 그림자 강화 */
+    backdrop-filter: blur(5px); /* 프로스티드 글라스 효과 */
 }
 
 .carousel-caption h5 {
@@ -133,14 +196,6 @@ main {
     margin-bottom: 30px;
     color: #e0e0e0; /* 밝은 회색 글씨 */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* 텍스트 그림자 */
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s; /* 0.2초 지연 후 애니메이션 시작 */
-}
-
-.featured-games h2.show {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .game-grid {
@@ -171,6 +226,8 @@ main {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.05) 100%); /* 미묘한 빛 반사 */
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none; /* 클릭 이벤트를 통과시킴 */
+    z-index: 1; /* 콘텐츠 아래에 위치 */
 }
 
 .game-card:hover {
@@ -205,14 +262,43 @@ main {
 
 .game-card a {
     color: #88bbee; /* 강조색 파란색 링크 */
-    text-decoration: none;
+    text-decoration: none; /* 기본적으로 밑줄 없음 */
     font-weight: bold;
     display: inline-block;
     margin-top: 10px;
     margin-bottom: 20px;
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* 색상과 밑줄 전환 효과 */
 }
 
+.game-card a:hover {
+    color: #6699ff; /* 호버 시 약간 밝아짐 */
+    text-decoration: underline; /* 호버 시 밑줄 */
+}
 
+.nexon-launcher {
+    background-color: #1a1a1a; /* 어두운 회색 배경 */
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: 40px;
+    color: #e0e0e0;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5); /* 상단 그림자 */
+}
+
+.download-button {
+    background-color: #88bbee; /* 강조색 파란색 */
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* 기본 그림자 */
+}
+
+.download-button:hover {
+    background-color: #6699ff; /* 더 밝은 파란색 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* 호버 시 그림자 강화 */
+}
 
 .fade-in {
     opacity: 0;
