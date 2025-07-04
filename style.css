@@ -1,0 +1,250 @@
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* 매우 어두운 배경 */
+    background-image: url('https://www.transparenttextures.com/patterns/dark-denim.png'); /* 미묘한 질감 추가 */
+    background-repeat: repeat;
+    color: #e0e0e0; /* 밝은 회색 글씨 */
+    overflow: hidden; /* 로딩 중 스크롤 방지 */
+}
+
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #121212; /* 로더 배경도 매우 어둡게 */
+    z-index: 9999; /* 다른 요소 위에 표시 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 1; /* 항상 보이도록 설정 */
+    visibility: visible; /* 항상 보이도록 설정 */
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* 사라지는 애니메이션 */
+}
+
+#loader-wrapper.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.progress-bar-container {
+    width: 300px;
+    height: 10px;
+    background-color: #333333; /* 중간 회색 바 */
+    border-radius: 2px; /* 얇고 깔끔한 직사각형 */
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5); /* 안쪽 그림자로 깊이감 */
+}
+
+.progress-bar-fill {
+    width: 0%;
+    height: 100%;
+    background-color: #88bbee; /* 강조색 파란색 게이지 */
+    animation: fill-progress 2s forwards; /* 게이지 차오르는 애니메이션 */
+    border-radius: 2px; /* 컨테이너와 동일하게 */
+}
+
+.loader-text {
+    color: #e0e0e0;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 텍스트 그림자 */
+}
+
+@keyframes fill-progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #e0e0e0; /* 밝은 회색 */
+}
+
+.nav-link {
+    font-weight: bold;
+    position: relative;
+    transition: color 0.3s ease;
+    color: #e0e0e0; /* 밝은 회색 */
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #88bbee; /* 강조색 파란색 */
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: #ffffff; /* 호버 시 순수 흰색 */
+}
+
+main {
+    padding: 0;
+}
+
+.carousel-item img {
+    height: 400px; /* 캐러셀 이미지 높이 */
+    object-fit: cover; /* 이미지가 잘리지 않고 전체가 보이도록 함 */
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.8); /* 더 짙은 배경 */
+    padding: 15px;
+    border-radius: 5px;
+    color: #e0e0e0; /* 밝은 회색 글씨 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* 그림자 강화 */
+}
+
+.carousel-caption h5 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #e0e0e0; /* 밝은 회색 글씨 */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9); /* 텍스트 그림자 강화 */
+}
+
+.carousel-caption p {
+    font-size: 1.2rem;
+    color: #b0b0b0; /* 연한 회색 글씨 */
+}
+
+.featured-games {
+    margin-top: 0;
+    background-color: #1a1a1a; /* 어두운 회색 배경 */
+    padding: 40px 20px;
+}
+
+.featured-games h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #e0e0e0; /* 밝은 회색 글씨 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* 텍스트 그림자 */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s; /* 0.2초 지연 후 애니메이션 시작 */
+}
+
+.featured-games h2.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 항상 4개의 열을 가지도록 명시 */
+    gap: 20px;
+}
+
+.game-card {
+    background-color: #1e1e1e; /* 어두운 회색 배경 */
+    border: 1px solid #333333; /* 중간 회색 테두리 */
+    color: #e0e0e0; /* 밝은 회색 글씨 */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, z-index 0s 0.3s; /* 애니메이션 전환 효과 추가 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); /* 그림자 강화 */
+    overflow: hidden;
+    position: relative; /* 빛 반사 효과를 위해 */
+    z-index: 1; /* 기본 z-index */
+}
+
+.game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.05) 100%); /* 미묘한 빛 반사 */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-12px) scale(1.05); /* 호버 시 더 위로 이동하고 더 확대 */
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.8); /* 호버 시 그림자 더 강화 */
+    background-color: #2a2a2a; /* 호버 시 약간 밝아짐 */
+    z-index: 10; /* 호버 시 z-index 높여서 위로 올라오게 */
+}
+
+.game-card:hover::before {
+    opacity: 1;
+}
+
+.game-card img {
+    width: 100%;
+    height: 360px !important;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.game-card h3 {
+    margin-top: 15px;
+    color: #e0e0e0;
+}
+
+.game-card p {
+    font-size: 14px;
+    color: #b0b0b0;
+    padding: 0 10px;
+}
+
+.game-card a {
+    color: #88bbee; /* 강조색 파란색 링크 */
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+footer {
+    background-color: #000; /* 가장 짙은 배경 */
+    color: #e0e0e0;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5); /* 상단 그림자 */
+}
+
+.footer-links a {
+    color: #b0b0b0; /* 연한 회색 링크 */
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.footer-links a strong {
+    color: #88bbee; /* 강조색 파란색 */
+}
+
+.footer-links a:hover {
+    color: #ffffff; /* 호버 시 순수 흰색 */
+    text-decoration: underline;
+}
